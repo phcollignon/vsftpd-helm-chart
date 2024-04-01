@@ -1,0 +1,18 @@
+apiVersion: v1
+entries:
+  vsftpd:
+  - apiVersion: v2
+    created: "2024-04-01T20:25:04.366479707+02:00"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: A Helm chart for Kubernetes to deploy an FTP server using fauria/vsftpd
+    digest: 13b0432491002de04ab6e42f5b16a1bf9e764d0b02e5eb36e6b8f24b1146aca1
+    name: vsftpd
+    urls:
+    - https://phcollignon.github.io/vsftpd-helm-chart/vsftpd-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-04-01T20:25:04.365799494+02:00"
