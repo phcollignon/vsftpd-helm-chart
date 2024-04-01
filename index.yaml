@@ -9,7 +9,7 @@ entries:
       tags:
       - bitnami-common
       version: 2.x.x
-    description: A Helm chart for Kubernetes to deploy an FTP server using fauria/vsftpd
+    description: A Helm chart for Kubernetes to deploy an FTP server using vsftpd
     digest: 13b0432491002de04ab6e42f5b16a1bf9e764d0b02e5eb36e6b8f24b1146aca1
     name: vsftpd
     urls:
