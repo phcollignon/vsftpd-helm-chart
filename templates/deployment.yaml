@@ -24,27 +24,25 @@ spec:
                   name: {{ include "common.names.fullname" . }}
                   key: ftp-password
             - name: PASV_ADDRESS
-              value: "192.168.2.2" # External IP of your LoadBalancer
+              value: "{{ .Values.service.pasvAddress }}"
             - name: PASV_ENABLE
               value: "YES"
             - name: PASV_MIN_PORT
-              value: "21100"
+              value: "{{ .Values.service.pasvMinPort }}"
             - name: PASV_MAX_PORT
-              value: "21110"
+              value: "{{ .Values.service.pasvMaxPort }}"
           ports:
-            - containerPort: 21
-            - containerPort: 20
-            - containerPort: 21100
-            - containerPort: 21101
-            - containerPort: 21102
-            - containerPort: 21103
-            - containerPort: 21104
-            - containerPort: 21105
-            - containerPort: 21106
-            - containerPort: 21107
-            - containerPort: 21108
-            - containerPort: 21109
-            - containerPort: 21110
+          - containerPort: {{ .Values.service.port }}
+          - containerPort: {{ .Values.service.dataPort }}
+          {{- $pasvMinPort := int .Values.service.pasvMinPort }}
+          {{- $pasvMaxPort := int .Values.service.pasvMaxPort }}
+          {{- $step := 1 }}
+          {{- $pasvPorts := untilStep $pasvMinPort $pasvMaxPort $step }}
+          {{- range $index, $port := $pasvPorts }}
+          - containerPort: {{ $port }}
+          {{- end }}
+
+   
           volumeMounts:
             - name: home
               mountPath: "/home/vsftpd"

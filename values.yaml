@@ -3,7 +3,13 @@ password: "pass"
 
 service:
   type: LoadBalancer
+
   port: 21
+  dataPort: 20
+  pasvMinPort: 21100
+  pasvMaxPort: 21110
+  pasvAddress: "192.168.2.2" # The external IP or domain for PASV mode
+
 
 image:
   repository: fauria/vsftpd
