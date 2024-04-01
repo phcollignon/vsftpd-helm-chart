@@ -22,8 +22,8 @@ persistence:
   home:
     enabled: true
     size: "1Gi"
-    storageClassName: ""
+    storageClassName: ftp-hostpath
   logs:
     enabled: true
     size: "100Mi"
-    storageClassName: ""
+    storageClassName: ftp-hostpath
