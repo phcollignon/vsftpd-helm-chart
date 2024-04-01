@@ -1,0 +1,23 @@
+username: "user"
+password: "pass"
+
+service:
+  type: LoadBalancer
+  port: 21
+
+image:
+  repository: fauria/vsftpd
+  tag: latest
+  pullPolicy: IfNotPresent
+
+commonLabels: {}
+
+persistence:
+  home:
+    enabled: true
+    size: "1Gi"
+    storageClassName: ""
+  logs:
+    enabled: true
+    size: "100Mi"
+    storageClassName: ""

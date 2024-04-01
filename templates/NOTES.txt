@@ -1,0 +1,40 @@
+{{- $fullName := include "common.names.fullname" . -}}
+{{- $svcType := .Values.service.type -}}
+{{- $port := .Values.service.port -}}
+
+
+Your FTP server is now deployed and, depending on your service type, accessible:
+
+{{- if eq $svcType "LoadBalancer" }}
+
+  1. Get the FTP server's external IP address:
+
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status by running:
+           'kubectl get svc --namespace {{ .Release.Namespace }} -w {{ $fullName }}'
+
+     Execute the following command to get the external IP:
+     kubectl get svc --namespace {{ .Release.Namespace }} {{ $fullName }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+
+  2. Connect to the FTP server:
+
+     You can connect to the FTP server using the external IP address obtained above and the port {{ $port }}.
+     Use an FTP client of your choice.
+
+     If you haven't set custom credentials, use the following default values:
+     - Username: {{ .Values.username }}
+     - Password: <The value you set for 'password'>
+
+{{- else }}
+
+  Your service type is set to '{{ $svcType }}'. You will need to access the FTP server using internal Kubernetes DNS or port-forwarding, depending on your setup and requirements.
+
+  For port-forwarding:
+  kubectl port-forward svc/{{ $fullName }} 21:21 --namespace {{ .Release.Namespace }}
+
+  Then you can connect to the server using 'localhost' as the host and port 21.
+
+{{- end }}
+
+Please remember, accessing FTP servers might require configuring your FTP client to use passive mode or adjusting firewall settings to allow traffic on the necessary ports, especially if you're operating behind a NAT or using a firewall.
+
