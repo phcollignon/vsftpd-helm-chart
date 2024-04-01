@@ -15,7 +15,7 @@ The source code and Dockerfile for the `fauria/vsftpd` image can be found in the
 - PV provisioner support in the underlying infrastructure (if persistence is needed)
 - Access to the Bitnami Helm repository for dependencies
 
-## Installing the Chart
+## Installing the Chart from source code
 
 First, ensure your Helm repository is up-to-date:
 ```shell
@@ -29,13 +29,14 @@ To install the chart with the release name `my-ftp-server`:
 
 This command deploys the FTP server on the Kubernetes cluster with the default configuration. The [Configuration](#configuration) section lists the parameters that can be configured during installation.
 
-## Deploying the Chart from GitHub Pages
+## Deploying the Chart from Helm repo
 
 To deploy the chart directly from the GitHub Pages repository where it is hosted, follow these steps:
 
 ```shell
 helm repo add phcollignon https://phcollignon.github.io/vsftpd-helm-chart
 helm repo update
+helm install my-ftp-server phcollignon/vsftpd
 ```
 
 ## Configuration
